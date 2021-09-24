@@ -1,8 +1,9 @@
 const app = Vue.createApp({
   data() {
     return {
-      courseGoal:'whatever'  
-    }  
+      courseGoal:'whatever',
+      link:'https://github.com/miaris98'  
+    };
   }  
 });
 
