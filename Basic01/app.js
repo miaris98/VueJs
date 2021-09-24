@@ -4,7 +4,8 @@ const app = Vue.createApp({
       courseGoal:'whatever',
       link:'https://github.com/miaris98',
       courseGoal1:'whatever1',
-      courseGoal2:'whatever2',  
+      courseGoal2:'whatever2',
+      Htmlele:'<h1>whatever3</h1>'  
     };
   },
   methods: {
@@ -15,6 +16,9 @@ const app = Vue.createApp({
       }else{
         return this.courseGoal2
       }
+    },
+    Htmlelement(){
+     return this.Htmlele
     }  
   }  
 });
