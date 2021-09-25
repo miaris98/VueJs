@@ -21,6 +21,12 @@
       <button v-on:click="add(5)">Add</button>
       <button v-on:click="reduce(5)">Reduce</button>
       <p>Result: {{ counter }}</p>
+      <input type="text"v-on:input="Printer($event)" v-on:keyup.enter="Conname"><!--$event is passed by default i am only satting here if so another argument needs to be passed-->
+      <p>Your name : {{Cname}}</p>
+      <form v-on:submit.prevent><!--eventmodifier used to change default-->
+        <input type="text">
+        <button>Sign up</button>
+      </form>
     </section>
   </body>
 </html>
