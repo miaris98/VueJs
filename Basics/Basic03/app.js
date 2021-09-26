@@ -30,6 +30,13 @@ const app = Vue.createApp({
       return this.name + '' + "Whatever";
     }
   },
+  watch:{
+    counter(value){
+      if(value>50){
+        this.counter=0
+      }
+    }
+  }
 });
 
 app.mount('#events');
