@@ -36,5 +36,6 @@ header {
 }
 
 .active{
-border-color:brown;  
+border-color:rgb(238, 255, 7);
+background-color: #384421;  
 }

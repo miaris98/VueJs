@@ -19,7 +19,7 @@
     <section id="styling">
       <div
         class="demo"
-        :style="{borderColor: boxAselected ? 'red' : '#ccc'}"
+        :class="{active:boxAselected}"
         @click="boxselected('A')"
       ></div>
       <div
