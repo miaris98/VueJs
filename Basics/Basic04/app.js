@@ -10,14 +10,19 @@ const app = Vue.createApp({
     boxselected(box) {
       if (box === "A") {
         this.boxAselected = true;
-        alert("enterA");
+        //alert("enterA");
       } else if (box === "B") {
         this.boxBselected = true;
-        alert("enterB");
+        //alert("enterB");
       } else if (box === "C") {
         this.boxCselected = true;
-        alert("enterC");
+        //alert("enterC");
       }
+    },
+  },
+  computed: {
+    AddStyleB() {
+      return {active:this.boxBselected};
     },
   },
 });
