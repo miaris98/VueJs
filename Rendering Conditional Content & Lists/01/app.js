@@ -1,7 +1,15 @@
 const app = Vue.createApp({
   data() {
-    return { goals: [] };
+    return {
+      goals: [],
+      goalvalue: '',
+    };
+  },
+  methods: {
+    putGoal() {
+      this.goals.push(this.goalvalue)
+    },
   },
 });
 
-app.mount('#user-goals');
+app.mount("#user-goals");
