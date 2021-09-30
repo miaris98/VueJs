@@ -5,29 +5,40 @@ function getRandomValue(min, max) {
 const app = Vue.createApp({
   data() {
     return {
-      playerhealth: 100,
-      monsterhealth: 100,
+      playerHealth: 100,
+      monsterHealth: 100,
+      currentRound: 0
     };
   },
   computed: {
     monsterBarStyles() {
-      return { width: this.monsterhealth + "%" };
+      return { width: this.monsterHealth + '%' };
     },
     playerBarStyles() {
-      return { width: this.playerhealth + "%" };
+      return { width: this.playerHealth + '%' };
     },
+    mayUseSpecialAttack() {
+      return this.currentRound % 3 !== 0;
+    }
   },
   methods: {
     attackMonster() {
-      const attackdamage = getRandomValue(5, 12);
-      this.monsterhealth = this.monsterhealth - attackdamage;
-      this.attackPlayer(); //Vue lets you access methods,data because they are merged into an object
+      this.currentRound++;
+      const attackValue = getRandomValue(5, 12);
+      this.monsterHealth -= attackValue;
+      this.attackPlayer();
     },
     attackPlayer() {
-      const attackdamage = getRandomValue(8, 15);
-      this.playerhealth = this.playerhealth - attackdamage;
+      const attackValue = getRandomValue(8, 15);
+      this.playerHealth -= attackValue;
     },
+    specialAttackMonster() {
+      this.currentRound++;
+      const attackValue = getRandomValue(10, 25);
+      this.monsterHealth -= attackValue;
+      this.attackPlayer();
+    }
   },
 });
 
-app.mount("#game");
+app.mount('#game');
