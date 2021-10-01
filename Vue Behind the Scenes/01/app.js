@@ -17,6 +17,19 @@ const app = Vue.createApp({
 
 app.mount('#app');
 
+const app2 = Vue.createApp({
+  data(){
+    return{
+      Fmeal:'pizza',
+    };
+  },
+});
+app2.mount('#app2');
+
+
+
+
+
 //vanilla javascript
 
 let message="hello";
@@ -29,7 +42,7 @@ console.log(Lmessage);// it is not printing the updated value
 const data ={
   message:'Hello!',
   longme:'hello world',
-},
+};
 const handler = {
   set(target,key,value){
     if(key==='message'){
@@ -37,6 +50,6 @@ const handler = {
     }
     target.message=value;
   }
-}
+};
 const proxy = new Proxy(data,handler);
 proxy.message="Hello!!!";
