@@ -14,9 +14,39 @@ const app = Vue.createApp({
       this.message=this.$refs.userText.value;//refs are more resourcefull
     },
   },
+  beforeCreate(){
+    console.log('before_create');
+  },
+  created(){
+    console.log('created');
+  },
+  beforeMount(){
+    console.log('Bmount');
+  },
+  mounted(){
+    console.log('Mounted');
+  },
+  beforeUpdate(){
+    console.log('beforeUpdate');
+  },
+  updated(){
+    console.log('updated');
+  },
+  beforeUnmount(){
+    console.log('beforeUnmount');
+  },
+  unmounted(){
+    console.log('unmounted');
+  },
 });
 
 app.mount('#app');
+
+setTimeout(function () {
+app.unmount();  
+},3000);
+
+
 
 const app2 = Vue.createApp({
   template: `<p>{{Fmeal}}</p>
