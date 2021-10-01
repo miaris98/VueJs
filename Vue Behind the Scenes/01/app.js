@@ -10,7 +10,8 @@ const app = Vue.createApp({
       this.currentUserInput = event.target.value;
     },
     setText() {
-      this.message = this.currentUserInput;
+      //this.message = this.currentUserInput;
+      this.message=this.$refs.userText.value;//refs are more resourcefull
     },
   },
 });
@@ -18,6 +19,8 @@ const app = Vue.createApp({
 app.mount('#app');
 
 const app2 = Vue.createApp({
+  template: `<p>{{Fmeal}}</p>
+  `,
   data(){
     return{
       Fmeal:'pizza',
