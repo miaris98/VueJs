@@ -18,6 +18,7 @@
   </section>
 </template>
 
+<!-- inside html elements we use - as delimeter while inside props/js we use camel -->
 <script>
 export default {
   data() {
@@ -30,7 +31,7 @@ export default {
           email: "some@mail.com",
         },
         {
-             id: "2",
+          id: "2",
           name: "whatever2",
           phone: "212121212112",
           email: "some1@mail.com",
