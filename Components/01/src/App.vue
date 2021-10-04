@@ -8,11 +8,13 @@
         name="What3"
         phone-number="111"
         email-address="What3@mail.com"
+        is-fav=0
       ></friend-contact>
       <friend-contact
         name="What4"
         phone-number="1011"
         email-address="What4@mail.com"
+        is-fav=1
       ></friend-contact>
     </ul>
   </section>
