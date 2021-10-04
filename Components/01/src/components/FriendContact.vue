@@ -1,6 +1,6 @@
 <template>
   <li>
-    <h2>{{ name }}{{ friendIsFav === "1" ? "(Favorite)" : "" }}</h2>
+    <h2>{{ name }}{{ friendIsFav ? "" : "(Favorite)" }}</h2>
     <button @click="changeFav">Change Favorite</button>
     <button @click="toggleDetails">
       {{ details ? "Hide" : "Show" }} Details
@@ -35,20 +35,14 @@ export default {
       required:true,
     },
     isFav:{
-      type:String,
+      type:Boolean,
       required:false,
-      default:'0'//it can be a fuction and you can have a validator
+      default:false,//it can be a fuction and you can have a validator
     },
   },
   data() {
     return {
       details: false,
-      friend: {
-        id: "1",
-        name: "whatever1",
-        phone: "101010101010",
-        email: "some@mail.com",
-      },
       friendIsFav: this.isFav,
     };
   },
