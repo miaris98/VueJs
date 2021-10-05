@@ -21,25 +21,38 @@
 <script>
 export default {
   //props: ["name", "phoneNumber", "emailAddress","isFav"],
-  props:{
-    name:{
-      type:String,
-      required:true,
-    } ,
-    phoneNumber:{
-      type:String,
-      required:true,
+  props: {
+    name: {
+      type: String,
+      required: true,
     },
-    emailAddress:{
-      type:String,
-      required:true,
+    phoneNumber: {
+      type: String,
+      required: true,
     },
-    isFav:{
-      type:Boolean,
-      required:false,
-      default:false,//it can be a fuction and you can have a validator
+    emailAddress: {
+      type: String,
+      required: true,
+    },
+    isFav: {
+      type: Boolean,
+      required: false,
+      default: false, //it can be a fuction and you can have a validator
     },
   },
+
+  emits:['toggle-favorite'],//props for event listening
+  /*
+  emits: {
+    "toggle-favorite": function(id) {
+      if (id) {
+        return true;
+      } else {
+        console.warn("id is missing");
+        return false;
+      }
+    },
+  },*/
   data() {
     return {
       details: false,
