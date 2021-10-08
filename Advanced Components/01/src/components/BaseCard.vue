@@ -1,14 +1,20 @@
 <template>
   <div>
-    <header>
-      <slot name="header"></slot>
+    <header v-if="$slots.header">
+      <slot name="header">
+        <!--<h2>THE DEFAULT</h2> if info doesnt pass the header does no render-->
+      </slot>
     </header>
     <slot></slot>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  mounted() {
+    console.log(this.$slots.header);
+  },
+};
 </script>
 
 <style scoped>
