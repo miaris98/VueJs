@@ -4,7 +4,9 @@
     <!-- <TheHeader /> -->
     <button @click="setSelected('active-goals')">Active Goals</button>
     <button @click="setSelected('manage-goals')">Manage Goals</button>
+    <keep-alive>
     <component :is="selectedComponent"></component>
+    </keep-alive>
   </div>
 </template>
 
