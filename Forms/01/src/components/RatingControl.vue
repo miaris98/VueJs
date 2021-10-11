@@ -31,7 +31,7 @@ export default {
 */
   methods: {
     active(option) {
-      this.activeOption = option;
+      //this.activeOption = option;
       this.$emit('update:modelValue', option);
     }
   }
