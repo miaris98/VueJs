@@ -6,11 +6,11 @@
     </div>
     <div class="form-control">
       <label for="age">Your Age (Years)</label>
-      <input id="age" name="age" type="number" v-model="userAge" ref="ageInput" />
+      <input id="age" name="age" type="number" v-model.number="userAge" ref="ageInput" />
     </div>
     <div class="form-control">
       <label for="referrer">How did you hear about us?</label>
-      <select id="referrer" name="referrer">
+      <select id="referrer" name="referrer" v-model="referrer">
         <option value="google">Google</option>
         <option value="wom">Word of mouth</option>
         <option value="newspaper">Newspaper</option>
@@ -58,6 +58,7 @@ export default {
     return {
       userName: '',
       userAge: null,
+      referrer:'wom',
     };
   },
 
@@ -70,6 +71,8 @@ export default {
       console.log(this.$refs.ageInput.value + 5);// refs default stored value is String
       console.log(31);
       this.userAge=null;
+      console.log('Referrer: '+ this.referrer);
+      this.referrer='wom';
     }
   }
 };
