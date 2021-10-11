@@ -1,12 +1,12 @@
 <template>
   <ul>
-    <li :class="{ active: activeOption === 'poor' }">
+    <li :class="{ active: modelValue === 'poor' }">
       <button type="button" @click="active('poor')">Poor</button>
     </li>
-    <li :class="{ active: activeOption === 'average' }">
+    <li :class="{ active: modelValue === 'average' }">
       <button type="button" @click="active('average')">Average</button>
     </li>
-    <li :class="{ active: activeOption === 'great' }">
+    <li :class="{ active: modelValue === 'great' }">
       <button type="button" @click="active('great')">Great</button>
     </li>
   </ul>
@@ -14,14 +14,25 @@
 
 <script>
 export default {
+  props: ['modelValue'],
+  emits: ['update:modelValue'],
+/*
   data() {
     return {
-      activeOption: null
+      activeOption: this.modelValue
     };
   },
+
+  computed: {
+    activeOption(){
+        return this.modelValue; //update back to component
+    }
+  },
+*/
   methods: {
     active(option) {
       this.activeOption = option;
+      this.$emit('update:modelValue', option);
     }
   }
 };
