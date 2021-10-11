@@ -6,7 +6,13 @@
     </div>
     <div class="form-control">
       <label for="age">Your Age (Years)</label>
-      <input id="age" name="age" type="number" v-model.number="userAge" ref="ageInput" />
+      <input
+        id="age"
+        name="age"
+        type="number"
+        v-model.number="userAge"
+        ref="ageInput"
+      />
     </div>
     <div class="form-control">
       <label for="referrer">How did you hear about us?</label>
@@ -19,32 +25,54 @@
     <div class="form-control">
       <h2>What are you interested in?</h2>
       <div>
-        <input id="interest-news" name="interest" type="checkbox" />
+        <input
+          id="interest-news"
+          name="interest"
+          type="checkbox"
+          v-model="interest"
+          value="news"
+        />
         <label for="interest-news">News</label>
       </div>
       <div>
-        <input id="interest-tutorials" name="interest" type="checkbox" />
+        <input
+          id="interest-tutorials"
+          name="interest"
+          type="checkbox"
+          v-model="interest"
+          value="tutorials"
+        />
         <label for="interest-tutorials">Tutorials</label>
       </div>
       <div>
-        <input id="interest-nothing" name="interest" type="checkbox" />
+        <input
+          id="interest-nothing"
+          name="interest"
+          type="checkbox"
+          v-model="interest"
+          value="nothing"
+        />
         <label for="interest-nothing">Nothing</label>
       </div>
     </div>
     <div class="form-control">
       <h2>How do you learn?</h2>
       <div>
-        <input id="how-video" name="how" type="radio" />
+        <input id="how-video" name="how" type="radio" value="video" v-model="how" />
         <label for="how-video">Video Courses</label>
       </div>
       <div>
-        <input id="how-blogs" name="how" type="radio" />
+        <input id="how-blogs" name="how" type="radio" value="blogs"  v-model="how" />
         <label for="how-blogs">Blogs</label>
       </div>
       <div>
-        <input id="how-other" name="how" type="radio" />
+        <input id="how-other" name="how" type="radio" value="other"  v-model="how" />
         <label for="how-other">Other</label>
       </div>
+    </div>
+    <div>
+      <input type="checkbox" name="confirm-terms" id="confirm-terms"/>
+      <label for="confirm-terms">Agree to terms</label>
     </div>
     <div>
       <button>Save Data</button>
@@ -58,7 +86,9 @@ export default {
     return {
       userName: '',
       userAge: null,
-      referrer:'wom',
+      referrer: 'wom',
+      interest: [],
+      how: null
     };
   },
 
@@ -67,12 +97,19 @@ export default {
       console.log('Username: ' + this.userName);
       this.userName = '';
       console.log('Userage: ');
-      console.log(this.userAge +5 );//v-model converts string to type of input
-      console.log(this.$refs.ageInput.value + 5);// refs default stored value is String
+      console.log(this.userAge + 5); //v-model converts string to type of input
+      console.log(this.$refs.ageInput.value + 5); // refs default stored value is String
       console.log(31);
-      this.userAge=null;
-      console.log('Referrer: '+ this.referrer);
-      this.referrer='wom';
+      this.userAge = null;
+      console.log('Referrer: ' + this.referrer);
+      this.referrer = 'wom';
+      console.log('checkboxes');
+      console.log(this.interest);
+      console.log('radios');
+      console.log(this.how);
+      this.interest=[];// need to be array not null
+      this.how=null;
+        
     }
   }
 };
