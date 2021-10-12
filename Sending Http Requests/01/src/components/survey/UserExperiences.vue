@@ -8,7 +8,8 @@
         >
       </div>
       <p v-if="isLoading">LOADING...</p>
-      <ul v-else>
+      <p v-else-if="!isLoading && error">{{error}}</p>
+      <ul v-else-if="!isLoading && results.length>0">
         <survey-result
           v-for="result in results"
           :key="result.id"
@@ -31,11 +32,13 @@ export default {
     return {
       results: [],
       isLoading:false,
+      error:null,
     };
   },
   methods: {
     loadExperiences() {
       this.isLoading=true;
+      this.error=null;
       fetch('https://vue-http-3981a-default-rtdb.firebaseio.com/surveys.json')
         .then((response) => { // fuction where this refers to the same element it refers out of the function scope
           if (response.ok) {
@@ -53,8 +56,12 @@ export default {
             });
           }
           this.results=results;
+        }).catch((error)=> {
+          console.log(error);
+          this.isLoading=false;
+          this.error='Failed to fetch data';
         });
-    }
+    },
   },
 mounted(){
 this.loadExperiences();
