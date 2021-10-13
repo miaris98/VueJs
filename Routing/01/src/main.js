@@ -9,7 +9,7 @@ const router = createRouter({
   routes: [
     { path: '/teams', component: TeamsList },
     { path: '/users', component: UsersList },
-    { path: '/teams/:teamId', component: TeamMembers } //carefull this syntax can match to all link so if you want another component it should be above this line
+    { path: '/teams/:teamId', component: TeamMembers,props:true } //carefull this syntax can match to all link so if you want another component it should be above this line
   ],
   linkActiveClass: 'router-link-active'
 });

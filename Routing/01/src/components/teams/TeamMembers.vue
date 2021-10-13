@@ -9,6 +9,7 @@
         :role="member.role"
       ></user-item>
     </ul>
+    <router-link to="/teams/t2">Go to team 2</router-link>
   </section>
 </template>
 
@@ -17,6 +18,7 @@ import UserItem from '../users/UserItem.vue';
 
 export default {
   inject: ['users', 'teams'],
+  props:['teamId'],
   components: {
     UserItem
   },
@@ -26,13 +28,13 @@ export default {
       members: []
     };
   },
-  created() {
-    /* 
+  methods:{
+    LoadMembers(teamId){
+      /* 
     the param we get from URL is passed to find() so that it can look for that team id
     then we fetch the injected teams members which is an array full of ids then we store
     each member in that team to SelectedMembers and the passed to data property. */
     //this.$route.path // teams/t1
-    const teamId = this.$route.params.teamId;
     const selectedTeam = this.teams.find(team => team.id === teamId);
     const members = selectedTeam.members;
     const selectedMembers = [];
@@ -42,6 +44,15 @@ export default {
     }
     this.members = selectedMembers;
     this.teamName = selectedTeam.name;
+    }
+  },
+  created() {
+    this.LoadMembers(this.teamId);
+  },
+  watch:{
+    teamId(newId){
+      this.LoadMembers(newId);
+    }
   }
 };
 </script>
