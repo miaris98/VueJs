@@ -3,7 +3,8 @@
     <nav>
       <ul>
         <li>
-          <router-link to="/teams">Teams</router-link><!--text and html elements can be in here cause it uses slots -->
+          <router-link to="/teams">Teams</router-link
+          ><!--text and html elements can be in here cause it uses slots -->
         </li>
         <li>
           <router-link to="/users">Users</router-link>
@@ -12,7 +13,6 @@
     </nav>
   </header>
 </template>
-
 
 <style scoped>
 header {
@@ -39,7 +39,8 @@ li {
   margin: 0 2rem;
 }
 
-a {/* router-links are custom anchor so styling is add via keyword "a" */
+a {
+  /* router-links are custom anchor so styling is add via keyword "a" */
   font: inherit;
   background: transparent;
   border: 1px solid transparent;
@@ -49,10 +50,10 @@ a {/* router-links are custom anchor so styling is add via keyword "a" */
   display: inline-block;
   text-decoration: none;
 }
- 
+
 a:hover,
 a:active,
-a.router-link-active{
+a.router-link-active {
   color: #f1a80a;
   border-color: #f1a80a;
   background-color: #1a037e;
