@@ -3,26 +3,16 @@
     <nav>
       <ul>
         <li>
-          <button @click="setActivePage('teams-list')">Teams</button>
+          <router-link to="/teams">Teams</router-link><!--text and html elements can be in here cause it uses slots -->
         </li>
         <li>
-          <button @click="setActivePage('users-list')">Users</button>
+          <router-link to="/users">Users</router-link>
         </li>
       </ul>
     </nav>
   </header>
 </template>
 
-<script>
-export default {
-  emits: ['set-page'],
-  methods: {
-    setActivePage(page) {
-      this.$emit('set-page', page);
-    },
-  },
-};
-</script>
 
 <style scoped>
 header {
@@ -49,7 +39,7 @@ li {
   margin: 0 2rem;
 }
 
-button {
+a {/* router-links are custom anchor so styling is add via keyword "a" */
   font: inherit;
   background: transparent;
   border: 1px solid transparent;
@@ -57,10 +47,11 @@ button {
   color: white;
   padding: 0.5rem 1.5rem;
   display: inline-block;
+  text-decoration: none;
 }
-
-button:hover,
-button:active {
+ 
+a:hover,
+a:active {
   color: #f1a80a;
   border-color: #f1a80a;
   background-color: #1a037e;
