@@ -8,27 +8,35 @@ import NotFound from './components/nav/NotFound.vue';
 import TeamsFooter from './components/teams/TeamsFooter.vue';
 import UsersFooter from './components/users/UsersFooter.vue';
 
-
-
 const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/', redirect: '/teams' },
     {
-      name:'teams',
+      name: 'teams',
       path: '/teams',
-      components:{default: TeamsList, footer: TeamsFooter},// there is a need for an extra component here
-      children: [ 
-        { name:'team-members',
-        path: ':teamId', 
-        component: TeamMembers, 
-        props: true } //carefull this syntax can match to all link so if you want another component it should be above this line
+      components: { default: TeamsList, footer: TeamsFooter }, // there is a need for an extra component here
+      children: [
+        {
+          name: 'team-members',
+          path: ':teamId',
+          component: TeamMembers,
+          props: true
+        } //carefull this syntax can match to all link so if you want another component it should be above this line
       ]
     },
-    { path: '/users', components:{default:UsersList ,footer:UsersFooter}},
+    { path: '/users', components: { default: UsersList, footer: UsersFooter } },
     { path: '/:catch(.*)', component: NotFound }
   ],
-  linkActiveClass: 'router-link-active'
+  linkActiveClass: 'router-link-active',
+  scrollBehavior(to, from, savedPosition) {
+    //console.log(to,from,savedPosition);
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { left: 0, top: 0 };
+    }
+  }
 });
 const app = createApp(App);
 app.use(router);
