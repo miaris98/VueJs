@@ -5,13 +5,15 @@
     <router-link :to="PathTo">View Members</router-link>
   </li>
 </template>
-
+ 
 <script> 
 export default {
   props: ['name','id','memberCount'],
   computed: {
     PathTo(){
-      return '/teams/'+this.id;
+      //return '/teams/'+this.id;
+      return{ name:'team-members', params:{teamId: this.id}};
+      //this.$router.push({ name:'team-members', params:{teamId: this.id}});
     }
   }
 };

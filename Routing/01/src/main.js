@@ -10,10 +10,11 @@ const router = createRouter({
   routes: [
     { path: '/', redirect: '/teams' },
     {
+      name:'teams',
       path: '/teams',
       component: TeamsList,// there is a need for an extra component here
       children: [ 
-        { path: ':teamId', component: TeamMembers, props: true } //carefull this syntax can match to all link so if you want another component it should be above this line
+        { name:'team-members',path: ':teamId', component: TeamMembers, props: true } //carefull this syntax can match to all link so if you want another component it should be above this line
       ]
     },
     { path: '/users', component: UsersList },
