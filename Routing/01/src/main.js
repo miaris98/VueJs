@@ -29,7 +29,7 @@ const router = createRouter({
     { path: '/:catch(.*)', component: NotFound }
   ],
   linkActiveClass: 'router-link-active',
-  scrollBehavior(to, from, savedPosition) {
+  scrollBehavior(_to, _from, savedPosition) {
     //console.log(to,from,savedPosition);
     if (savedPosition) {
       return savedPosition;
@@ -38,6 +38,11 @@ const router = createRouter({
     }
   }
 });
+router.beforeEach(function(to,from,next){
+console.log("global beforeEach");
+console.log(to,from);
+next();
+});//guards are in place for navigation
 const app = createApp(App);
 app.use(router);
 app.mount('#app');
