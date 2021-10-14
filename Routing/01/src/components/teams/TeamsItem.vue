@@ -5,14 +5,18 @@
     <router-link :to="PathTo">View Members</router-link>
   </li>
 </template>
- 
-<script> 
+
+<script>
 export default {
-  props: ['name','id','memberCount'],
+  props: ['name', 'id', 'memberCount'],
   computed: {
-    PathTo(){
+    PathTo() {
       //return '/teams/'+this.id;
-      return{ name:'team-members', params:{teamId: this.id}};
+      return {
+        name: 'team-members',
+        params: { teamId: this.id },
+        query: { sort: 'asc' }
+      }; //adding query parameter the piece after ? in URL's
       //this.$router.push({ name:'team-members', params:{teamId: this.id}});
     }
   }
