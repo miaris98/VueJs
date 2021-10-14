@@ -25,7 +25,12 @@ const router = createRouter({
         } //carefull this syntax can match to all link so if you want another component it should be above this line
       ]
     },
-    { path: '/users', components: { default: UsersList, footer: UsersFooter } },
+    { path: '/users', components: { default: UsersList, footer: UsersFooter }, 
+    beforeEnter(_to,_from,next){
+      next(); // local guard
+    },
+    },
+    
     { path: '/:catch(.*)', component: NotFound }
   ],
   linkActiveClass: 'router-link-active',
@@ -38,11 +43,11 @@ const router = createRouter({
     }
   }
 });
-router.beforeEach(function(to,from,next){
-console.log("global beforeEach");
-console.log(to,from);
-next();
-});//guards are in place for navigation
+router.beforeEach(function(to, from, next) {
+  console.log('global beforeEach');
+  console.log(to, from);
+  next(); // will set were the next "hop" is
+}); //guards are in place for navigation
 const app = createApp(App);
 app.use(router);
 app.mount('#app');

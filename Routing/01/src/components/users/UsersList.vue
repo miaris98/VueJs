@@ -18,6 +18,9 @@ export default {
       // task is finished
       this.$router.push('/teams');// programmatic navigation
     }
+  },
+  beforeRouteEnter(_,_2,next){
+    next();//another local guard
   }
 };
 </script>
