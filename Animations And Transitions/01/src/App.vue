@@ -3,6 +3,12 @@
     <div class="block" :class="{Ani:animatedBl}"></div>
     <button @click="animateB">Animate</button>
   </div>
+  <div class="container">
+    <transition>
+    <p v-if="isP_visible">Now you see me</p> 
+    </transition>
+    <button @click="pVisibile">Toggle P</button>
+  </div>
   <base-modal @close="hideDialog" v-if="dialogIsVisible">
     <p>This is a test dialog!</p>
     <button @click="hideDialog">Close it!</button>
@@ -18,11 +24,15 @@ export default {
     return { 
       dialogIsVisible: false,
       animatedBl:false,
+      isP_visible:false,
      };
   },
   methods: {
     showDialog() {
       this.dialogIsVisible = true;
+    },
+    pVisibile(){
+      this.isP_visible= !this.isP_visible;
     },
     hideDialog() {
       this.dialogIsVisible = false;
@@ -81,6 +91,35 @@ button:active {
   /*transform: translateX(-50px);*/
   animation: slide-fade 0.5s ease-out forwards;
 }
+
+.v-enter-from{
+  opacity: 0;
+  transform: translateY(-30px) scale(0.9);
+}
+
+.v-enter-active{
+  transition: all 0.3s ease-out;
+}
+
+.v-enter-to{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.v-leave-from{
+  opacity: 1;
+  transform: translateY(0) scale(1);  
+}
+
+.v-leave-active{
+transition: all 0.3s ease-in;
+}
+
+.v-leave-to{
+  opacity: 0;
+  transform: translateY(-30px) scale(0.9);
+}
+
 
 @keyframes slide-fade {
   0%{
