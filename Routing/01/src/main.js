@@ -15,6 +15,7 @@ const router = createRouter({
     {
       name: 'teams',
       path: '/teams',
+      meta: {needsAuth:true},//can be acesses through $route
       components: { default: TeamsList, footer: TeamsFooter }, // there is a need for an extra component here
       children: [
         {
@@ -26,8 +27,13 @@ const router = createRouter({
       ]
     },
     { path: '/users', components: { default: UsersList, footer: UsersFooter }, 
-    beforeEnter(_to,_from,next){
-      next(); // local guard
+    beforeEnter(to,_from,next){
+      if(to.meta.needsAuth){
+        // check if user is auth
+        next();
+      }
+      next();
+       // local guard
     },
     },
     
