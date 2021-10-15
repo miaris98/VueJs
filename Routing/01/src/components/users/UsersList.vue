@@ -1,5 +1,6 @@
 <template>
 <button @click="onclick">Confirm</button>
+<button @click="saveChanges">Save Changes</button>  
   <ul>
     <user-item v-for="user in users" :key="user.id" :name="user.fullName" :role="user.role"></user-item>
   </ul>
@@ -13,15 +14,35 @@ export default {
     UserItem,
   },
   inject: ['users'],
+  data(){
+    return{
+      changesSaved:false,
+    };
+  },
   methods:{
     onclick(){
       // task is finished
       this.$router.push('/teams');// programmatic navigation
-    }
+    },
+    saveChanges(){
+      this.changesSaved=true;
+    },
   },
   beforeRouteEnter(_,_2,next){
     next();//another local guard
-  }
+  },
+  beforeRouteLeave(_to,_from,next){
+    console.log('UsersList beforeRouteLeave');
+    if(this.changesSaved){
+      next();
+    }else {
+      const flag =confirm('form is not complete');
+      next(flag);
+    }// this way we ensure the user doesnt loose data
+  },
+  unmounted(){
+    console.log('unmounted');
+  },
 };
 </script>
 

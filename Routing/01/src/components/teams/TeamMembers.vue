@@ -46,6 +46,9 @@ export default {
     this.teamName = selectedTeam.name;
     }
   },
+  beforeRouteUpdate(_,_2,next){
+    next();
+  },
   created() {
     this.LoadMembers(this.teamId);
     console.log(this.$route.query);
