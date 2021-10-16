@@ -4,7 +4,7 @@
     <button @click="animateB">Animate</button>
   </div>
   <div class="container">
-    <transition name="Para"
+    <transition name="Para" @before-enter="beforeEnter"
       ><!-- you can name each step ie enter-to-class="some_name" -->
       <p v-if="isP_visible">Now you see me</p>
     </transition>
@@ -53,7 +53,11 @@ export default {
     },
     hide() {
       this.buttonVisibility = false;
-    }
+    },
+    beforeEnter(el){
+
+      console.log(el);//enter method is used as active class
+    },
   }
 };
 </script>
