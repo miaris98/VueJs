@@ -9,11 +9,17 @@
       <p v-if="isP_visible">Now you see me</p>
     </transition>
     <button @click="pVisibile">Toggle P</button>
+    <div class="container">
+      <transition name="fade-button" mode="out-in">
+      <button @click="show" v-if="!buttonVisibility">Show</button>
+      <button @click="hide" v-else>Hide</button>
+      </transition>
+    </div>
   </div>
-    <base-modal @close="hideDialog" :open="dialogIsVisible">
-      <p>This is a test dialog!</p>
-      <button @click="hideDialog">Close it!</button>
-    </base-modal>
+  <base-modal @close="hideDialog" :open="dialogIsVisible">
+    <p>This is a test dialog!</p>
+    <button @click="hideDialog">Close it!</button>
+  </base-modal>
   <div class="container">
     <button @click="showDialog">Show Dialog</button>
   </div>
@@ -25,7 +31,8 @@ export default {
     return {
       dialogIsVisible: false,
       animatedBl: false,
-      isP_visible: false
+      isP_visible: false,
+      buttonVisibility: false
     };
   },
   methods: {
@@ -40,6 +47,12 @@ export default {
     },
     animateB() {
       this.animatedBl = true;
+    },
+    show() {
+      this.buttonVisibility = true;
+    },
+    hide() {
+      this.buttonVisibility = false;
     }
   }
 };
@@ -118,6 +131,24 @@ button:active {
 .Para-leave-to {
   opacity: 0;
   transform: translateY(-30px) scale(0.9);
+}
+
+.fade-button-enter-from
+.fade-button-leave-to{
+  opacity: 0;
+}
+
+.fade-button-enter-active{
+  transition: opacity 0.3s ease-out ;
+}
+
+.fade-button-leave-active{
+  transition: opacity 0.3s ease-in ;
+}
+
+.fade-button-enter-to
+.fade-button-leave-from{
+  opacity: 1;
 }
 
 @keyframes slide-fade {
