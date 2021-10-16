@@ -1,6 +1,9 @@
 <template>
   <div class="container">
-    <div class="block" :class="{animate: animatedBlock}"></div>
+    <list-data></list-data>
+  </div>
+  <div class="container">
+    <div class="block" :class="{ animate: animatedBlock }"></div>
     <button @click="animateBlock">Animate</button>
   </div>
   <div class="container">
@@ -32,10 +35,12 @@
   <div class="container">
     <button @click="showDialog">Show Dialog</button>
   </div>
-</template>  
+</template>
 
 <script>
+import ListData from './components/ListData.vue';
 export default {
+  components: { ListData },
   data() {
     return {
       animatedBlock: false,
@@ -116,8 +121,8 @@ export default {
     },
     hideDialog() {
       this.dialogIsVisible = false;
-    },
-  },
+    }
+  }
 };
 </script>
 
