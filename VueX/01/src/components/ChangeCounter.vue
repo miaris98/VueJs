@@ -10,7 +10,7 @@ export default {
     // addOne(){
     //     this.$store.dispatch('increase' , {value:10});
     // }
-    ...mapActions(['increment', 'increase']) // ... merge operator to merge the actions to methods object
+    ...mapActions('counter',['increment', 'increase']) // ... merge operator to merge the actions to methods object
   }
 };
 </script>

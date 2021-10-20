@@ -3,13 +3,14 @@ import { createStore } from 'vuex';
 import App from './App.vue';
 
 const counterModule = {
+  namespaced:true,//namespace is counter as this was set on mudoles block on main Store  
   state() {
     return {
       counter: 0,
     };
   },
   mutations: {
-    increment(state) {
+    increment(state) { // rootState can be used inside local module
       //mutations works with synch code
       state.counter++;
     },
