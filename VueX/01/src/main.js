@@ -11,6 +11,7 @@ const store = createStore({
   },
   mutations: {
     increment(state) {
+      //mutations works with synch code
       state.counter++;
     },
     increase(state, payload) {
@@ -27,7 +28,18 @@ const store = createStore({
         console.log("do staff with "+Fcounter);
         return Fcounter;
       },
-
+  },
+  actions:{
+    increment(context){// can ran async code
+      setTimeout(function() {
+        context.commit('increment');
+      }, 2000);
+    },
+    increase(context ,payload){// can ran async code
+      setTimeout(function() {
+        context.commit('increase',payload);
+      }, 2000);
+    }
   }
 });
 
