@@ -2,12 +2,11 @@ import { createApp } from 'vue';
 import { createStore } from 'vuex';
 import App from './App.vue';
 
-const store = createStore({
+const counterModule = {
   state() {
     return {
       counter: 0,
-      isLoggedIn: false,
-    }; //application data
+    };
   },
   mutations: {
     increment(state) {
@@ -17,28 +16,6 @@ const store = createStore({
     increase(state, payload) {
       state.counter = state.counter + payload.value;
     },
-
-    setAuth(state,payload){
-       state.isLoggedIn= payload.isAuth;
-    },
-
-
-  },
-  getters: {
-    finalCounter(state) {
-      // can get getters as parameter
-      return state.counter;
-    },
-
-    normalizedCounter(state, getters) {
-      const Fcounter = getters.finalCounter;
-      console.log('do staff with ' + Fcounter);
-      return Fcounter;
-    },
-
-    userIsAuth(state){
-      return state.isLoggedIn;
-    }
   },
   actions: {
     increment(context) {
@@ -53,7 +30,41 @@ const store = createStore({
         context.commit('increase', payload);
       }, 2000);
     },
+  },
+  getters: {
+    finalCounter(state) {
+      // can get getters as parameter
+      return state.counter;
+    },
 
+    normalizedCounter(state, getters) {
+      const Fcounter = getters.finalCounter;
+      console.log('do staff with ' + Fcounter);
+      return Fcounter;
+    },
+  }
+};
+
+const store = createStore({
+  modules:{
+    counter:counterModule,
+  },
+  state() {
+    return {
+      isLoggedIn: false,
+    }; //application data
+  },
+  mutations: {
+    setAuth(state,payload){
+       state.isLoggedIn= payload.isAuth;
+    },
+  },
+  getters: {
+    userIsAuth(state){
+      return state.isLoggedIn;
+    }
+  },
+  actions: {
     login(context){
       context.commit('setAuth',{isAuth:true});
     },
