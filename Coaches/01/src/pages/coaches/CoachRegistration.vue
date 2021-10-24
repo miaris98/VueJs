@@ -11,17 +11,12 @@
 import CoachForm from '../../components/coaches/CoachForm.vue';
 
 export default {
-  computed:{
-    isCoach(){
-      return this.$store.getters['coaches/isCoach'];
-    }
-  }, 
   components: {
     CoachForm,
   },
-  methods:{
-    saveData(data){
-      this.$store.dispatch('coaches/registerCoach',data);
+  methods: {
+    saveData(data) {
+      this.$store.dispatch('coaches/registerCoach', data);
       this.$router.replace('/coaches');
     }
   }

@@ -31,21 +31,24 @@ import CoachFilter from '../../components/coaches/CoachFilter.vue';
 export default {
   components: {
     CoachItem,
-    CoachFilter
+    CoachFilter,
   },
   data() {
     return {
       activeFilters: {
         frontend: true,
         backend: true,
-        career: true
-      }
+        career: true,
+      },
     };
   },
   computed: {
+    isCoach() {
+      return this.$store.getters['coaches/isCoach'];
+    },
     filteredCoaches() {
       const coaches = this.$store.getters['coaches/coaches'];
-      return coaches.filter(coach => {
+      return coaches.filter((coach) => {
         if (this.activeFilters.frontend && coach.areas.includes('frontend')) {
           return true;
         }
@@ -61,16 +64,12 @@ export default {
     hasCoaches() {
       return this.$store.getters['coaches/hasCoaches'];
     },
-
-    isCoach() {
-      return this.$store.getters['coaches/isCoach'];
-    }
   },
   methods: {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
-    }
-  }
+    },
+  },
 };
 </script>
 
