@@ -1,24 +1,30 @@
 <template>
-  <base-dialog :show="!!error" title="An error occurred!" @close="handleError">
-    <p>{{ error }}</p>
-  </base-dialog>
-  <section>
-    <base-card>
-      <header>
-        <h2>Requests Received</h2> 
-      </header>
-      <base-spinner v-if="isLoading"></base-spinner>
-      <ul v-else-if="hasRequests && !isLoading">
-        <request-item
-          v-for="req in receivedRequests"
-          :key="req.id"
-          :email="req.userEmail"
-          :message="req.message"
-        ></request-item>
-      </ul>
-      <h3 v-else>You haven't received any requests yet! </h3>
-    </base-card>
-  </section>
+  <div>
+    <base-dialog
+      :show="!!error"
+      title="An error occurred!"
+      @close="handleError"
+    >
+      <p>{{ error }}</p>
+    </base-dialog>
+    <section>
+      <base-card>
+        <header>
+          <h2>Requests Received</h2>
+        </header>
+        <base-spinner v-if="isLoading"></base-spinner>
+        <ul v-else-if="hasRequests && !isLoading">
+          <request-item
+            v-for="req in receivedRequests"
+            :key="req.id"
+            :email="req.userEmail"
+            :message="req.message"
+          ></request-item>
+        </ul>
+        <h3 v-else>You haven't received any requests yet!</h3>
+      </base-card>
+    </section>
+  </div>
 </template>
 
 <script>
@@ -26,12 +32,12 @@ import RequestItem from '../../components/requests/RequestItem.vue';
 
 export default {
   components: {
-    RequestItem,
+    RequestItem
   },
-  data (){
+  data() {
     return {
-      isLoading:false,
-      error:null,
+      isLoading: false,
+      error: null
     };
   },
   computed: {
@@ -40,23 +46,23 @@ export default {
     },
     hasRequests() {
       return this.$store.getters['requests/hasRequests'];
-    },
+    }
   },
-  created(){
+  created() {
     this.loadRequests();
   },
-  methods:{
-    async loadRequests(){
-      this.isLoading=true;
-      try{
+  methods: {
+    async loadRequests() {
+      this.isLoading = true;
+      try {
         await this.$store.dispatch('requests/fetchRequests'); //returns a promise
-      }catch(error){
+      } catch (error) {
         this.error = error.message || 'something failed';
       }
-      this.isLoading=false;
+      this.isLoading = false;
     },
-    handleError(){
-      this.error=null;
+    handleError() {
+      this.error = null;
     }
   }
 };
