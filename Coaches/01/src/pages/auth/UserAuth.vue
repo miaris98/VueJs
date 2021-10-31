@@ -51,7 +51,7 @@ export default {
       this.formIsValid = true;
       if (
         this.email === '' ||
-        this.email.includes('@') ||
+        !this.email.includes('@') ||
         this.password.length < 8
       ) {
         this.formIsValid = false;
@@ -72,7 +72,7 @@ export default {
       } else {
         this.mode = 'login';
       }
-    }
+    },
   }
 };
 </script>

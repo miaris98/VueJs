@@ -13,15 +13,18 @@ export default {
       }
     );
     const responseData = await response.json();
-    if(!response.ok){
-        console.log(responseData);
-        const error = new Error(responseData.message || 'Failed to Auth')
-        throw error;
+
+    if (!response.ok) {
+      console.log(responseData);
+      const error = new Error(responseData.message || 'Failed to authenticate.');
+      throw error;
     }
-    context.commit('setUser',{
-        token:responseData.idTOken,
-        userId:responseData.localId,
-        tokenExpiration:responseData.expiresIn
-    })
+
+    console.log(responseData);
+    context.commit('setUser', {
+      token: responseData.idToken,
+      userId: responseData.localId,
+      tokenExpiration: responseData.expiresIn
+    });
   }
 };
