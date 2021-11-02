@@ -8,8 +8,9 @@ export default {
       hourlyRate: data.rate,
       areas: data.areas
     };
+    const token = context.rootGetters.token;
     const response = await fetch(
-      `https://coaches-f4be9-default-rtdb.europe-west1.firebasedatabase.app/coaches/${userId}.json`,
+      `https://coaches-f4be9-default-rtdb.europe-west1.firebasedatabase.app/coaches/${userId}.json?auth=`+token,//? add ? for authetication mode in firebase
       {
         method: 'PUT',
         body: JSON.stringify(coachData)
