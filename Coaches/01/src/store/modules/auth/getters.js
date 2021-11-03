@@ -7,5 +7,8 @@ export default {
   },
   isAuthenticated(state){
     return !!state.token; //!! converts to true boolean
+  },
+  didlogout(state){
+    return state.didlogout;
   }
 };

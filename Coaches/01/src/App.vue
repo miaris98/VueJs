@@ -14,8 +14,20 @@ export default {
   components: {
     TheHeader
   },
+  computed:{
+    didLogout(){
+      return this.$store.getters.didLogout;
+    }
+  },
   created() {
     this.$store.dispatch('tryLogin');
+  },
+  watch:{
+  didLogout(newValue,oldValue){
+    if(newValue && newValue !== oldValue){
+      this.$router.replace('/coaches');
+    }
+  }
   }
 };
 </script>
