@@ -11,25 +11,33 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue';
+import { ref, computed , watch } from 'vue';
 
 export default {
   setup() {
     // const uName = ref('Maximilian');
     const firstName = ref('');
     const lastName = ref('');
-    const uAge = ref(31);
+    const uAge = ref(22);
     // const user = reactive({
-    //   name: 'Maximilian',
-    //   age: 31,
+    //   name: 'dennis',
+    //   age: 23,
     // });
 
+    
     const uName = computed(function() {
       return firstName.value + ' ' + lastName.value;
     });
+    
+    watch([uAge,uName],function(newValues , oldValues){
+      console.log('Old age : '+oldValues[0]);
+      console.log('New age : '+newValues[0]);
+      console.log('Old name : '+oldValues[1]);
+      console.log('New name : '+newValues[1]);
+    });
 
     function setNewAge() {
-      uAge.value = 33;
+      uAge.value = 23;
     }
 
     return {
@@ -42,13 +50,13 @@ export default {
   },
   // data() {
   //   return {
-  //     userName: 'Maximilian',
-  //     age: 31
+  //     userName: 'dennis',
+  //     age: 22
   //   };
   // },
   // methods: {
   //   setNewAge() {
-  //     this.age = 32;
+  //     this.age = 23;
   //   }
   // }
 };
