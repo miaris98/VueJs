@@ -1,40 +1,56 @@
 <template>
   <section class="container">
-    <h2>{{ user.name }}</h2>
-    <h2>{{ user.age }}</h2> 
+    <h2>{{ userName }}</h2>
+    <h3>{{ age }}</h3>
     <button @click="setAge">Change Age</button>
+    <div>
+      <input type="text" placeholder="First Name" v-model="firstName" />
+      <input type="text" placeholder="Last Name" v-model="lastName" />
+    </div>
   </section>
 </template>
 
 <script>
-//import {ref} from 'vue';
-import {reactive} from 'vue'; // ref for objects
-export default {
-  setup(){
-    // const uAge = ref(23);
-    // const uName = ref('Dennis');
-    const user =reactive({
-      name:'Dennis',
-      age:23,
-    })
-    function setNewAge() {
-      user.age=24
-    }
-    return{
-      user:user,
-      setAge:setNewAge,
-    }; //pointing to method
-  },
-  // methods:{
-  //   setNewAge(){
+import { ref, computed } from 'vue';
 
-  //   }
-  // }
+export default {
+  setup() {
+    // const uName = ref('Maximilian');
+    const firstName = ref('');
+    const lastName = ref('');
+    const uAge = ref(31);
+    // const user = reactive({
+    //   name: 'Maximilian',
+    //   age: 31,
+    // });
+
+    const uName = computed(function() {
+      return firstName.value + ' ' + lastName.value;
+    });
+
+    function setNewAge() {
+      uAge.value = 33;
+    }
+
+    return {
+      userName: uName,
+      age: uAge,
+      setAge: setNewAge,
+      firstName,
+      lastName
+    };
+  },
   // data() {
   //   return {
-  //     userName: 'Dennis',
+  //     userName: 'Maximilian',
+  //     age: 31
   //   };
   // },
+  // methods: {
+  //   setNewAge() {
+  //     this.age = 32;
+  //   }
+  // }
 };
 </script>
 
